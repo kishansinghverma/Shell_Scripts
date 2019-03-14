@@ -3,4 +3,4 @@ read -p "Mark 2:" y
 read -p "Mark 3:" z
 result=$(( $x + $y+ $z  ))
 result=`echo $result / 3 | bc -l`
-echo "Average of marks is: $result"
+echo "Grade is: $result"
