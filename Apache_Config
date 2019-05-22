@@ -1,0 +1,27 @@
+1. Install Apache2
+2. Install Python
+3. sudo a2enmod cgi
+4. sudo service apache2 restart
+5. >>>>>>>>>>>>>>>>> Modified /etc/apache2/conf-enabled/serve-cgi-bin.conf <<<<<<<<<<<<<<<<<<<<<<<
+
+<IfModule mod_alias.c>
+        <IfModule mod_cgi.c>
+                Define ENABLE_USR_LIB_CGI_BIN
+        </IfModule>
+
+        <IfModule mod_cgid.c>
+                Define ENABLE_USR_LIB_CGI_BIN
+        </IfModule>
+
+        <IfDefine ENABLE_USR_LIB_CGI_BIN>
+                ScriptAlias /cgi-bin/ /home/kishan/Desktop/cgi-bin/
+                <Directory "/home/kishan/Desktop/cgi-bin">
+                        AllowOverride None
+                        Options +ExecCGI -MultiViews +SymLinksIfOwnerMatch
+                        Require all granted
+                        AddHandler cgi-script .cgi .py
+                </Directory>
+        </IfDefine>
+</IfModule>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
